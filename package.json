@@ -11,5 +11,16 @@
   },
   "engines": {
     "node": ">=6"
-  }
+  },
+  "keywords": [
+    "disjoint",
+    "set",
+    "forest",
+    "union",
+    "find",
+    "es6",
+    "data",
+    "structure",
+    "typescript"
+  ]
 }
