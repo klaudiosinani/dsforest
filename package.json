@@ -1,0 +1,15 @@
+{
+  "name": "dsforest",
+  "version": "0.0.0",
+  "description": "Disjoint-set forests for ES6",
+  "license": "MIT",
+  "repository": "klaussinani/dsforest",
+  "author": {
+    "name": "Klaus Sinani",
+    "email": "klaussinani@gmail.com",
+    "url": "https://klaussinani.github.io"
+  },
+  "engines": {
+    "node": ">=6"
+  }
+}
