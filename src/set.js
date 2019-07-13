@@ -5,6 +5,10 @@ class DisjointSet {
     this._parent = [];
     this._rank = [];
   }
+
+  _id(x) {
+    return x;
+  }
 }
 
 module.exports = DisjointSet;
