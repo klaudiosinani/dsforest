@@ -3,6 +3,7 @@
 class DisjointSet {
   constructor() {
     this._parent = [];
+    this._rank = [];
   }
 }
 
