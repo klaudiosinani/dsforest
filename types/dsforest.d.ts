@@ -5,6 +5,7 @@ declare namespace disjointSet {
 
   export interface Instance<T> {
     includes(value: T): boolean;
+    makeSet(value: T): this;
   }
 }
 
