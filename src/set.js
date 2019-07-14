@@ -1,10 +1,10 @@
 'use strict';
 
 class DisjointSet {
-  constructor(keyAccessorFn) {
+  constructor(idAccessorFn) {
     this._parent = {};
     this._rank = {};
-    this._keyAccessorFn = keyAccessorFn || this._id;
+    this._idAccessorFn = idAccessorFn || this._id;
   }
 
   _id(x) {
