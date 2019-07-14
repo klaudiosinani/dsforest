@@ -12,6 +12,10 @@ class DisjointSet {
   _id(x) {
     return x;
   }
+
+  includes(value) {
+    return Object.prototype.hasOwnProperty.call(this._parent, this._idAccessorFn(value));
+  }
 }
 
 module.exports = DisjointSet;

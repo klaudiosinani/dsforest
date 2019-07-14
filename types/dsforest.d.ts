@@ -3,7 +3,9 @@ declare namespace disjointSet {
     new <T = any>(): Instance<T>;
   }
 
-  export interface Instance<T> {}
+  export interface Instance<T> {
+    includes(value: T): boolean;
+  }
 }
 
 declare namespace dsforest {
