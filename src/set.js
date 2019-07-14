@@ -16,6 +16,18 @@ class DisjointSet {
   includes(value) {
     return Object.prototype.hasOwnProperty.call(this._parent, this._idAccessorFn(value));
   }
+
+  makeSet(value) {
+    if (!this.includes(value)) {
+      const id = this._idAccessorFn(value);
+      this._parent[id] = value;
+      this._rank[id] = 0;
+      this._size[id] = 1;
+      this._sets += 1;
+    }
+
+    return this;
+  }
 }
 
 module.exports = DisjointSet;
