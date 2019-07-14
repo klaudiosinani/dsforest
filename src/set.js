@@ -4,6 +4,7 @@ class DisjointSet {
   constructor(idAccessorFn) {
     this._parent = {};
     this._rank = {};
+    this._size = {};
     this._idAccessorFn = idAccessorFn || this._id;
   }
 
