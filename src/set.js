@@ -17,6 +17,10 @@ class DisjointSet {
     return this._sets;
   }
 
+  get forestElements() {
+    return Object.keys(this._parent).length;
+  }
+
   includes(value) {
     return Object.prototype.hasOwnProperty.call(this._parent, this._idAccessorFn(value));
   }
