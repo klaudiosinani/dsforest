@@ -5,7 +5,7 @@ declare namespace disjointSet {
 
   export interface Instance<T> {
     readonly forestElements: number;
-    readonly forestSize: number;
+    readonly forestSets: number;
     includes(value: T): boolean;
     makeSet(value: T): this;
   }

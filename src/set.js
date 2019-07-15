@@ -13,12 +13,12 @@ class DisjointSet {
     return x;
   }
 
-  get forestSize() {
-    return this._sets;
-  }
-
   get forestElements() {
     return Object.keys(this._parent).length;
+  }
+
+  get forestSets() {
+    return this._sets;
   }
 
   includes(value) {
