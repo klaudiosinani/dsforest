@@ -55,6 +55,14 @@ class DisjointSet {
     return this.forestElements === 0;
   }
 
+  isRepresentative(value) {
+    if (!this.includes(value)) {
+      return false;
+    }
+
+    return this._parent[this._idAccessorFn(value)] === value;
+  }
+
   isSingleton(value) {
     return this._size[this._idAccessorFn(value)] === 1;
   }
