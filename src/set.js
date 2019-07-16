@@ -9,6 +9,16 @@ class DisjointSet {
     this._idAccessorFn = idAccessorFn || this._id;
   }
 
+  _findSet(value) {
+    const id = this._idAccessorFn(value);
+
+    if (this._parent[id] !== value) {
+      this._parent[id] = this._findSet(this._parent[id]);
+    }
+
+    return this._parent[id];
+  }
+
   _id(x) {
     return x;
   }
@@ -19,6 +29,14 @@ class DisjointSet {
 
   get forestSets() {
     return this._sets;
+  }
+
+  findSet(value) {
+    if (this.includes(value)) {
+      return this._findSet(value);
+    }
+
+    return undefined;
   }
 
   includes(value) {
