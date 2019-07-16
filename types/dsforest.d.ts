@@ -6,6 +6,7 @@ declare namespace disjointSet {
   export interface Instance<T> {
     readonly forestElements: number;
     readonly forestSets: number;
+    areConnected(x: T, y: T): boolean;
     findSet(value: T): T | undefined;
     includes(value: T): boolean;
     makeSet(value: T): this;
