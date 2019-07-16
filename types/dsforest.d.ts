@@ -9,6 +9,7 @@ declare namespace disjointSet {
     areConnected(x: T, y: T): boolean;
     findSet(value: T): T | undefined;
     includes(value: T): boolean;
+    isEmpty(): boolean;
     makeSet(value: T): this;
   }
 }
