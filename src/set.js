@@ -43,6 +43,14 @@ class DisjointSet {
     return Object.prototype.hasOwnProperty.call(this._parent, this._idAccessorFn(value));
   }
 
+  areConnected(x, y) {
+    if (!this.includes(x) || !this.includes(y)) {
+      return false;
+    }
+
+    return this._findSet(x) === this._findSet(y);
+  }
+
   makeSet(value) {
     if (!this.includes(value)) {
       const id = this._idAccessorFn(value);
