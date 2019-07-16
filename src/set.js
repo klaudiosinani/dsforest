@@ -31,6 +31,14 @@ class DisjointSet {
     return this._sets;
   }
 
+  areConnected(x, y) {
+    if (!this.includes(x) || !this.includes(y)) {
+      return false;
+    }
+
+    return this._findSet(x) === this._findSet(y);
+  }
+
   findSet(value) {
     if (this.includes(value)) {
       return this._findSet(value);
@@ -43,12 +51,8 @@ class DisjointSet {
     return Object.prototype.hasOwnProperty.call(this._parent, this._idAccessorFn(value));
   }
 
-  areConnected(x, y) {
-    if (!this.includes(x) || !this.includes(y)) {
-      return false;
-    }
-
-    return this._findSet(x) === this._findSet(y);
+  isEmpty() {
+    return this.forestElements === 0;
   }
 
   makeSet(value) {
