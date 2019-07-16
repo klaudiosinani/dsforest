@@ -11,6 +11,7 @@ declare namespace disjointSet {
     includes(value: T): boolean;
     isEmpty(): boolean;
     makeSet(value: T): this;
+    setSize(value: T): number;
   }
 }
 

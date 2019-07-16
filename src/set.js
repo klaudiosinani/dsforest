@@ -66,6 +66,14 @@ class DisjointSet {
 
     return this;
   }
+
+  setSize(value) {
+    if (!this.includes(value)) {
+      return 0;
+    }
+
+    return this._size[this._idAccessorFn(this._findSet(value))];
+  }
 }
 
 module.exports = DisjointSet;
