@@ -10,6 +10,7 @@ declare namespace disjointSet {
     findSet(value: T): T | undefined;
     includes(value: T): boolean;
     isEmpty(): boolean;
+    isSingleton(value: T): boolean;
     makeSet(value: T): this;
     setSize(value: T): number;
   }

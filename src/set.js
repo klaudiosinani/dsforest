@@ -55,6 +55,10 @@ class DisjointSet {
     return this.forestElements === 0;
   }
 
+  isSingleton(value) {
+    return this._size[this._idAccessorFn(value)] === 1;
+  }
+
   makeSet(value) {
     if (!this.includes(value)) {
       const id = this._idAccessorFn(value);
