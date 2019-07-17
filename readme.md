@@ -27,3 +27,18 @@ Visit the [contributing guidelines](https://github.com/klaussinani/dsforest/blob
 ## Contents
 
 - [Description](#description)
+- [Install](#install)
+
+## Install
+
+### Yarn
+
+```bash
+yarn add dsforest
+```
+
+### NPM
+
+```bash
+npm install dsforest
+```
