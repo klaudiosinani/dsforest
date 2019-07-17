@@ -28,6 +28,7 @@ Visit the [contributing guidelines](https://github.com/klaussinani/dsforest/blob
 
 - [Description](#description)
 - [Install](#install)
+- [Development](#development)
 
 ## Install
 
@@ -42,3 +43,12 @@ yarn add dsforest
 ```bash
 npm install dsforest
 ```
+
+## Development
+
+For more info on how to contribute to the project, please read the [contributing guidelines](https://github.com/klaussinani/dsforest/blob/master/contributing.md).
+
+- Fork the repository and clone it to your machine
+- Navigate to your local fork: `cd dsforest`
+- Install the project dependencies: `npm install` or `yarn install`
+- Lint the code and run the tests: `npm test` or `yarn test`
