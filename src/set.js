@@ -86,6 +86,33 @@ class DisjointSet {
 
     return this._size[this._idAccessorFn(this._findSet(value))];
   }
+
+  union(x, y) {
+    if (this.includes(x) && this.includes(y)) {
+      let xRep = this._findSet(x);
+      let yRep = this._findSet(y);
+
+      if (xRep !== yRep) {
+        let xRepId = this._idAccessorFn(xRep);
+        let yRepId = this._idAccessorFn(yRep);
+        const rankDiff = this._rank[xRepId] - this._rank[yRepId];
+
+        if (rankDiff === 0) {
+          this._rank[xRepId] += 1;
+        } else if (rankDiff < 0) {
+          [xRep, yRep] = [yRep, xRep];
+          [xRepId, yRepId] = [yRepId, xRepId];
+        }
+
+        this._parent[yRepId] = xRep;
+        this._size[xRepId] += this._size[yRepId];
+        delete this._size[yRepId];
+        this._sets -= 1;
+      }
+    }
+
+    return this;
+  }
 }
 
 module.exports = DisjointSet;

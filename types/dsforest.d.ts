@@ -14,6 +14,7 @@ declare namespace disjointSet {
     isSingleton(value: T): boolean;
     makeSet(value: T): this;
     setSize(value: T): number;
+    union(x: T, y: T): this;
   }
 }
 
