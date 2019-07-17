@@ -29,6 +29,7 @@ Visit the [contributing guidelines](https://github.com/klaussinani/dsforest/blob
 - [Description](#description)
 - [Install](#install)
 - [Development](#development)
+- [Related](#related)
 
 ## Install
 
@@ -52,3 +53,12 @@ For more info on how to contribute to the project, please read the [contributing
 - Navigate to your local fork: `cd dsforest`
 - Install the project dependencies: `npm install` or `yarn install`
 - Lint the code and run the tests: `npm test` or `yarn test`
+
+## Related
+
+- [avlbinstree](https://github.com/klaussinani/avlbinstree) - AVL self-balancing binary search trees for ES6
+- [binstree](https://github.com/klaussinani/binstree) - Binary search trees for ES6
+- [doublie](https://github.com/klaussinani/doublie) - Doubly circular & linear linked lists for ES6
+- [mheap](https://github.com/klaussinani/mheap) - Binary min & max heaps for ES6
+- [prioqueue](https://github.com/klaussinani/prioqueue) - Priority queues for ES6
+- [singlie](https://github.com/klaussinani/singlie) - Singly circular & linear linked lists for ES6
