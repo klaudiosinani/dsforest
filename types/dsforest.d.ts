@@ -1,6 +1,6 @@
 declare namespace disjointSet {
   export interface Constructor {
-    new <T = any>(): Instance<T>;
+    new <T = any, U = T>(idAccessorFn?: (value: T) => U): Instance<T>;
   }
 
   export interface Instance<T> {
