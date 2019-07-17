@@ -47,6 +47,14 @@ class DisjointSet {
     return undefined;
   }
 
+  getId(value) {
+    if (!this.includes(value)) {
+      return undefined;
+    }
+
+    return this._idAccessorFn(value);
+  }
+
   includes(value) {
     return Object.prototype.hasOwnProperty.call(this._parent, this._idAccessorFn(value));
   }
