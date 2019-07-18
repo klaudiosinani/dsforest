@@ -281,6 +281,49 @@ set.areConnected(10, 20);
 //=> true
 ```
 
+#### set.`clear()`
+
+- Return Type: `DisjointSet`
+
+Mutates the disjoint-set forest by removing all residing elements and sets, returning it completely empty.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30)
+  .makeSet(40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 40 } }
+set.forestElements;
+//=> 4
+set.forestSets;
+//=> 4
+set.union(10, 40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 10 } }
+set.forestElements;
+//=> 4
+set.forestSets;
+//=> 3
+set.clear();
+//=> DisjointSet { parent: { } }
+set.forestElements;
+//=> 0
+set.forestSets;
+//=> 0
+```
+
 #### set.`findSet(value)`
 
 - Return Type: `Any | undefined`
@@ -312,12 +355,12 @@ set.findSet(10);
 //=> 10
 set.union(40, 10);
 //=> DisjointSet { parent: {
-//   10: 10,
+//   10: 40,
 //   20: 20,
 //   30: 30
 //   40: 10 } }
-set.findSet(40);
-//=> 10
+set.findSet(10);
+//=> 40
 set.findSet(50);
 //=> undefined
 ```
