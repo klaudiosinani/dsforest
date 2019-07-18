@@ -25,7 +25,8 @@
     "typescript"
   ],
   "scripts": {
-    "lint": "xo"
+    "lint": "xo",
+    "test:ts": "tsc --noEmit -p test/types"
   },
   "devDependencies": {
     "ava": "2.2.0",
