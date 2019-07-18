@@ -84,7 +84,10 @@ const colors = {
   }
 };
 
-const set = new DisjointSet(x => x.name);
+// Custom function expression to map each color element to exactly one unique id
+const idAccessorFn = color => color.name;
+
+const set = new DisjointSet(idAccessorFn);
 //=> DisjointSet { parent: { } }
 
 set.isEmpty();
