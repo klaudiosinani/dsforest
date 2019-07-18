@@ -51,7 +51,7 @@ npm install dsforest
 
 ## In Depth
 
-A disjoint-set forest data structure, also known as union–find data structure or merge–find set, is a data structure that tracks a set of elements partitioned into a number of disjoint, non-overlapping subsets. It provides near-constant-time operations, bounded by the inverse Ackermann function, for the following operations:
+A disjoint-set forest data structure, also known as union–find data structure or merge–find set, is a data structure that tracks a set of elements partitioned into several disjoint, non-overlapping subsets. It provides near-constant-time operations, bounded by the inverse Ackermann function, for the following operations:
 
 - Add new sets
 - Merge existing sets
@@ -59,9 +59,9 @@ A disjoint-set forest data structure, also known as union–find data structure 
 
 This performance is achieved through the combined usage of the **union by rank** and **path compression** heuristics, which enable the disjoint-set forest to become an asymptotically optimal data structure.
 
-Every disjoint-set forest consists of a number of elements, where each to element corresponds to a unique id, a parent pointer and a rank value. The parent pointers of elements are arranged to form one or more trees, each representing a set. If an element's parent pointer points to itself, then the element is the root of a tree, thus the representative member of its set. Also, elements that do not point to themselves, are part of the set identified by following the chain of parent pointers upwards until a representative element is reached, at the root of the tree.
+Every disjoint-set forest consists of a number of elements, where to each element corresponds a unique id, a parent pointer, and a rank value. The parent pointers of the elements are arranged to form one or more trees, each representing a set. If an element's parent pointer points to the element itself, then the element is the root of its tree, thus the representative member of its set. Also, the elements that do not point to themselves, are part of the set identified by following the chain of parent pointers upwards, know as find-path, until a representative element is reached, at the root of the tree.
 
-Dsforest disjoint-set forests are represented compactly in memory through associative arrays, composed of `(childID, parentValue)` key-value pairs, where each parent element (value) is indicated by its unique child's id (key). By default, the `identity` function `x => x` is used to map element values to their unique ids, though a custom id generating function can be provided as argument on `DisjointSet` class instantiation.
+Dsforest disjoint-set forests are represented compactly in memory through associative arrays, composed of **(childID, parentValue)** key-value pairs, where each parent element (value) is indicated by its unique child's id (key). By default, the `identity` function (`x => x`) is used to map element values to their unique ids, though a custom id generating function can be provided as argument upon `DisjointSet` class instantiation.
 
 ## Usage
 
@@ -190,7 +190,7 @@ set.getId(colors.green);
 
 - Return Type: `Number`
 
-Returns the total number of all elements among the disjoint sets of the forest.
+Returns the number of elements residing in the disjoint-sets of the forest.
 
 ```js
 const {DisjointSet} = require('dsforest');
@@ -213,7 +213,7 @@ set.forestElements;
 
 - Return Type: `Number`
 
-Returns the number of disjoint sets in the forest.
+Returns the number of disjoint-sets in the forest.
 
 ```js
 const {DisjointSet} = require('dsforest');
@@ -328,7 +328,7 @@ set.forestSets;
 
 - Return Type: `Any | undefined`
 
-Returns the representative element/root of the disjoint-set/tree that element `value` is part of. If the given element is not part of any set/tree, then `undefined` is returned. The method uses the **path compression** heuristic which mutates the parent pointer of each element, part of the find path, by making it point directly to the set representative/root.
+Returns the representative element/root of the disjoint-set/tree that element `value` is part of. If the given element is not part of any set/tree, then `undefined` is returned. The method uses the **path compression** heuristic which mutates the parent pointer of each element, part of the find-path, by making it point directly to the set-representative/root.
 
 ##### **`value`**
 
@@ -622,7 +622,7 @@ set.setSize(40);
 
 - Return Type: `DisjointSet`
 
-Determines the set representatives/roots of the given `x` and `y` elements, and if they are distinct, the sets/trees that `x` and `y` belong to are merged by updating the parent pointer of the set representative/root with the lower rank to point to the set representative/root with the higher rank. If instead, the representatives/roots have equal ranks, the set representative/root of element `x` is chosen **by default** as the parent of the `y` element representative/root, while its rank is also incremented. Returns the disjoint-set forest itself. 
+Determines the set representatives/roots of the given `x` and `y` elements, and if they are distinct, the sets/trees that `x` and `y` belong to are merged by updating the parent pointer of the set-representative/root with the lower rank to point to the set-representative/root with the higher rank. If instead, the representatives/roots have equal ranks, the set-representative/root of element `x` is chosen **by default** as the parent of the `y` element representative/root, while its rank is also incremented. Returns the disjoint-set forest itself. 
 
 ##### **`x`**
 
