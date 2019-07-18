@@ -27,6 +27,7 @@ Visit the [contributing guidelines](https://github.com/klaussinani/dsforest/blob
 
 - [Description](#description)
 - [Install](#install)
+- [In Depth](#in-depth)
 - [Usage](#usage)
 - [Development](#development)
 - [Related](#related)
@@ -46,6 +47,20 @@ yarn add dsforest
 ```bash
 npm install dsforest
 ```
+
+## In Depth
+
+A disjoint-set forest data structure, also known as union–find data structure or merge–find set, is a data structure that tracks a set of elements partitioned into a number of disjoint, non-overlapping subsets. It provides near-constant-time operations, bounded by the inverse Ackermann function, for the following operations:
+
+- Add new sets
+- Merge existing sets
+- Determine whether elements are in the same set
+
+This performance is achieved through the combined usage of the **union by rank** and **path compression** heuristics, which enable the disjoint-set forest to become an asymptotically optimal data structure.
+
+Every disjoint-set forest consists of a number of elements, where each to element corresponds to a unique id, a parent pointer and a rank value. The parent pointers of elements are arranged to form one or more trees, each representing a set. If an element's parent pointer points to itself, then the element is the root of a tree, thus the representative member of its set. Also, elements that do not point to themselves, are part of the set identified by following the chain of parent pointers upwards until a representative element is reached, at the root of the tree.
+
+Dsforest disjoint-set forests are represented compactly in memory through associative arrays, composed of `(childID, parentValue)` key-value pairs, where each parent element (value) is indicated by its unique child's id (key). By default, the `identity` function `x => x` is used to map element values to their unique ids, though a custom id generating function can be provided as argument on `DisjointSet` class instantiation.
 
 ## Usage
 
