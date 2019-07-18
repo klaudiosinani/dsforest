@@ -7,6 +7,7 @@ declare namespace disjointSet {
     readonly forestElements: number;
     readonly forestSets: number;
     areConnected(x: T, y: T): boolean;
+    clear(): this;
     findSet(value: T): T | undefined;
     getId(value: T): U | undefined;
     includes(value: T): boolean;
