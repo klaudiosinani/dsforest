@@ -29,6 +29,7 @@ Visit the [contributing guidelines](https://github.com/klaussinani/dsforest/blob
 - [Install](#install)
 - [In Depth](#in-depth)
 - [Usage](#usage)
+- [API](#api)
 - [Development](#development)
 - [Related](#related)
 - [Team](#team)
@@ -181,6 +182,480 @@ set.forestSets;
 
 set.getId(colors.green);
 //=> green
+```
+
+## API
+
+#### set.`forestElements`
+
+- Return Type: `Number`
+
+Returns the total number of all elements among the disjoint sets of the forest.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30 } }
+set.forestElements;
+//=> 3
+```
+
+#### set.`forestSets`
+
+- Return Type: `Number`
+
+Returns the number of disjoint sets in the forest.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30 } }
+set.forestSets;
+//=> 3
+set.union(10, 20);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 10,
+//   30: 30 } }
+set.forestSets;
+//=> 2
+```
+
+#### set.`areConnected(x, y)`
+
+- Return Type: `DisjointSet`
+
+Determines whether the two given elements `x` and `y` belong to the same disjoint-set/tree, returning `true` or `false` as appropriate.
+
+##### **`x`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+##### **`y`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30 } }
+set.areConnected(10, 20);
+//=> false
+set.union(10, 20);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 10,
+//   30: 30 } }
+set.areConnected(10, 20);
+//=> true
+```
+
+#### set.`findSet(value)`
+
+- Return Type: `Any | undefined`
+
+Returns the representative element/root of the disjoint-set/tree that element `value` is part of. If the given element is not part of any set/tree, then `undefined` is returned. The method uses the **path compression** heuristic which mutates the parent pointer of each element, part of the find path, by making it point directly to the set representative/root.
+
+##### **`value`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30)
+  .makeSet(40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 40 } }
+set.findSet(10);
+//=> 10
+set.union(40, 10);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 10 } }
+set.findSet(40);
+//=> 10
+set.findSet(50);
+//=> undefined
+```
+
+#### set.`getId(value)`
+
+- Return Type: `Any | undefined`
+
+Returns the unique id that the given `value` element corresponds to and which is used as a key to point to the parent element of `value` in the parent associative array. If the given value element is not part of any disjoint-set, then `undefined` is returned.
+
+##### **`value`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30)
+  .makeSet(40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 40 } }
+set.getId(10);
+//=> 10
+set.getId(50);
+//=> undefined
+```
+
+#### set.`includes(value)`
+
+- Return Type: `Boolean`
+
+Determines whether the given element `value` is part of a set, returning `true` or `false` as appropriate.
+
+##### **`value`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30)
+  .makeSet(40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 40 } }
+set.includes(100);
+//=> false
+set.includes(20);
+//=> true
+```
+
+#### set.`isEmpty()`
+
+- Return Type: `Boolean`
+
+Determines whether the disjoint-set forest is empty, returning `true` or `false` as appropriate.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set.isEmpty();
+//=> true
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30)
+  .makeSet(40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 40 } }
+set.isEmpty();
+//=> false
+```
+
+#### set.`isRepresentative(value)`
+
+- Return Type: `Boolean`
+
+Determines whether the given element `value` is the representative element/root of its disjoint-set/tree, returning `true` or `false` as appropriate.
+
+##### **`value`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30)
+  .makeSet(40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 40 } }
+set.isRepresentative(50);
+//=> false
+set.isRepresentative(40);
+//=> true
+set.union(10, 40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 10 } }
+set.isRepresentative(40);
+//=> false
+set.isRepresentative(10);
+//=> true
+```
+
+#### set.`isSingleton(value)`
+
+- Return Type: `Boolean`
+
+Determines whether the given element `value` is part of a singleton set/tree, a set of size `1` with `value` as its representative element/root, returning `true` or `false` as appropriate.
+
+##### **`value`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30)
+  .makeSet(40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 40 } }
+set.isSingleton(50);
+//=> false
+set.isSingleton(40);
+//=> true
+set.union(10, 40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 10 } }
+set.isSingleton(40);
+//=> false
+```
+
+#### set.`makeSet(value)`
+
+- Return Type: `DisjointSet`
+
+Mutates the disjoint-set forest by creating a new singleton set/tree containing the element `value` with a rank of `0`, a parent pointer to itself indicating that the element is the representative member/root of its own set and a corresponding unique id. Returns the disjoint-set forest itself.
+
+##### **`value`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set.makeSet(10);
+//=> DisjointSet { parent: { 10: 10 } }
+set.forestElements;
+//=> 1
+set
+  .makeSet(20)
+  .makeSet(30)
+  .makeSet(40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 40 } }
+set.forestElements;
+//=> 4
+```
+
+#### set.`setSize(value)`
+
+- Return Type: `Number`
+
+Returns the size of the disjoint-set that the given element `value` is a member of. If the value is not part of any set, then `0` is returned.
+
+##### **`value`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30)
+  .makeSet(40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 40 } }
+set.setSize(10);
+//=> 1
+set.setSize(50);
+//=> 0
+set.union(10, 40);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 10 } }
+set.setSize(40);
+//=> 2
+```
+
+#### set.`union(n)`
+
+- Return Type: `DisjointSet`
+
+Determines the set representatives/roots of the given `x` and `y` elements, and if they are distinct, the sets/trees that `x` and `y` belong to are merged by updating the parent pointer of the set representative/root with the lower rank to point to the set representative/root with the higher rank. If instead, the representatives/roots have equal ranks, the set representative/root of element `x` is chosen **by default** as the parent of the `y` element representative/root, while its rank is also incremented. Returns the disjoint-set forest itself. 
+
+##### **`x`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+##### **`y`**
+
+- Type: `Any`
+
+Disjoint-set forest element.
+
+```js
+const {DisjointSet} = require('dsforest');
+
+const set = new DisjointSet();
+
+set
+  .makeSet(10)
+  .makeSet(20)
+  .makeSet(30)
+  .makeSet(40)
+  .makeSet(50);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 20,
+//   30: 30
+//   40: 40
+//   50: 50 } }
+set.union(10, 20);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 10,
+//   30: 30
+//   40: 40
+//   50: 50 } }
+set.findSet(20);
+//=> 10
+set.isRepresentative(10);
+//=> true
+set.union(40, 30);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 10,
+//   30: 40
+//   40: 40
+//   50: 50 } }
+set.findSet(30);
+//=> 40
+set.isRepresentative(40);
+//=> true
+set.union(30, 50);
+//=> DisjointSet { parent: {
+//   10: 10,
+//   20: 10,
+//   30: 40
+//   40: 40
+//   50: 40 } }
+set.findSet(50);
+//=> 40
+set.setSize(30);
+//=> 3
+set.setSize(20);
+//=> 2
+set.union(20, 50);
+//=> DisjointSet { parent: {
+//   10: 40,
+//   20: 40,
+//   30: 40
+//   40: 40
+//   50: 40 } }
+set.findSet(10);
+//=> 40
+set.forestSets;
+//=> 1
 ```
 
 ## Development
