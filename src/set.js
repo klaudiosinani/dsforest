@@ -39,6 +39,14 @@ class DisjointSet {
     return this._findSet(x) === this._findSet(y);
   }
 
+  clear() {
+    this._parent = {};
+    this._rank = {};
+    this._size = {};
+    this._sets = 0;
+    return this;
+  }
+
   findSet(value) {
     if (this.includes(value)) {
       return this._findSet(value);
