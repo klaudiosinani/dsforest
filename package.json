@@ -1,6 +1,6 @@
 {
   "name": "dsforest",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Disjoint-set forests for ES6",
   "license": "MIT",
   "repository": "klaussinani/dsforest",
