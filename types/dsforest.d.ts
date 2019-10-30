@@ -1,6 +1,6 @@
 declare namespace disjointSet {
   export interface Constructor {
-    new <T = any, U = T>(idAccessorFn?: (value: T) => U): Instance<T, U>;
+    new <T = unknown, U = T>(idAccessorFn?: (value: T) => U): Instance<T, U>;
   }
 
   export interface Instance<T, U> {
@@ -21,7 +21,7 @@ declare namespace disjointSet {
 }
 
 declare namespace dsforest {
-  export interface DisjointSet<T = any, U = T>
+  export interface DisjointSet<T = unknown, U = T>
     extends disjointSet.Instance<T, U> {}
 }
 
